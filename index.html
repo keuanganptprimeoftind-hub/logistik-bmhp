@@ -46,7 +46,24 @@ th{color:var(--mut);font-weight:600;font-size:12px}
 .lerr{color:#b00020;font-size:12px;text-align:center;min-height:16px;margin-top:8px}
 .lt{text-align:center;font-size:10px;color:#6b5d3a;padding:4px 0 10px}
 .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:12px}.k{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px}.k b{display:block;font-size:22px}.k span{font-size:12px;color:var(--mut)}
-#msg{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:10px 12px;border-radius:10px;display:none;z-index:9}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--pri);z-index:11}
+#bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;display:flex;align-items:center;gap:10px;background:var(--pri);color:var(--pri-t);padding:8px 12px}
+#ttl{font-weight:700;flex:1}
+#hb{background:none;border:0;color:inherit;cursor:pointer;padding:4px;display:grid}
+#hb svg{width:26px;height:26px;fill:currentColor}
+#roles{display:flex;align-items:center;gap:8px}
+#roles .tag{background:rgba(255,255,255,.35);border-color:transparent;color:inherit}
+#bar .btn.s{margin:0;background:rgba(0,0,0,.18);color:inherit}
+#scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:12;display:none}
+#dr{position:fixed;top:0;bottom:0;left:0;width:min(330px,88vw);background:var(--card);z-index:13;transform:translateX(-105%);transition:transform .2s;padding:calc(18px + env(safe-area-inset-top,0px)) 12px 16px;overflow-y:auto;box-shadow:2px 0 14px rgba(0,0,0,.3)}
+body.open #dr{transform:none}body.open #scrim{display:block}
+#dg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px 4px}
+.mi{background:none;border:0;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:var(--mut);padding:0;text-align:center}
+.mi i{position:relative;width:50px;height:50px;border-radius:50%;display:grid;place-items:center}
+.mi svg{width:26px;height:26px;fill:#fff}
+.mi.on{color:var(--fg);font-weight:600}.mi.on i{box-shadow:0 0 0 3px var(--pri)}
+.mi b{position:absolute;top:-4px;right:-4px;min-width:19px;height:19px;border-radius:10px;background:#dc2626;color:#fff;font-size:11px;display:grid;place-items:center;padding:0 5px;font-style:normal}
+#msg{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:10px 12px;border-radius:10px;display:none;z-index:14}
 </style>
 </head>
 <body>
@@ -55,10 +72,10 @@ th{color:var(--mut);font-weight:600;font-size:12px}
 <div class="lf"><svg width="13" height="13" viewBox="0 0 24 24" fill="#8a6a00"><circle cx="12" cy="7" r="5"/><path d="M2 22c0-6 4.5-9 10-9s10 3 10 9z"/></svg><input id="l_u" placeholder="username" autocomplete="username" onkeydown="if(event.key==='Enter')$('#l_p').focus()"></div>
 <div class="lf"><svg width="13" height="13" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="12" rx="2" fill="#8a6a00"/><path d="M8 10V7a4 4 0 018 0v3" fill="none" stroke="#8a6a00" stroke-width="3"/></svg><input id="l_p" type="password" placeholder="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()"></div>
 <button onclick="login()">Log In</button><div class="lerr" id="l_e"></div></div><div class="lt">Sistem Logistik BMHP OK &ndash; Farmasi</div></div></div>
+<header id="bar"><button id="hb" onclick="drawer(1)" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg></button><span id="ttl">Logistik BMHP</span><span id="roles"></span></header>
+<div id="scrim" onclick="drawer(0)"></div>
+<nav id="dr"><div id="dg"></div></nav>
 <main>
-<div class="top"><h1>Logistik BMHP OK ↔ Farmasi</h1>
-<div class="seg" id="roles"></div></div>
-<div class="tabs" id="tabs"></div>
 <div id="view"><p class="muted">Memuat…</p></div>
 <p class="muted">Versi uji coba. Gunakan data contoh, bukan data pasien asli.</p>
 </main>
@@ -134,11 +151,14 @@ if(need>0){$("#view").innerHTML=empty("Memuat\u2026");return}
 role=w.role;
 $("#roles").innerHTML=`<span class="tag">${esc(w.nama)}${role==="Admin"?"":" \u00b7 "+(role==="OK"?"Kamar Operasi":esc(role))}</span> <button class="btn s" onclick="logout()">Keluar</button>`;
 const ks=Object.keys(TABS).filter(k=>TABS[k][1]==="*"||role==="Admin"||TABS[k][1]===role);if(!ks.includes(tab))tab=ks[0];
-const badge=k=>{const n={queue:rows.filter(t=>t.status==="Diminta").length,retur:rows.filter(t=>t.status==="Diserahkan ke OK").length,verif:rows.filter(t=>t.status==="Menunggu Verifikasi Retur").length}[k];return n?` (${n})`:""};
-$("#tabs").innerHTML=ks.map(k=>`<button class="${k===tab?"on":""}" onclick="setTab('${k}')">${TABS[k][0]}${badge(k)}</button>`).join("");
+const badge=k=>{const n={queue:rows.filter(t=>t.status==="Diminta").length,retur:rows.filter(t=>t.status==="Diserahkan ke OK").length,verif:rows.filter(t=>t.status==="Menunggu Verifikasi Retur").length}[k];return n||0};
+$("#ttl").textContent=TABS[tab][0];
+$("#dg").innerHTML=ks.map(k=>{const n=badge(k);return `<button class="mi${k===tab?" on":""}" onclick="setTab('${k}')"><i style="background:${IC[k][1]}"><svg viewBox="0 0 24 24"><path d="${IC[k][0]}"/></svg>${n?`<b>${n}</b>`:""}</i>${TABS[k][0]}</button>`}).join("");
 $("#view").innerHTML=V[tab]();if(tab==="new")prev();if(tab==="stok")fillStok()}
 function setPer(p){per=p;render()}
-function setTab(k){tab=k;render()}
+const IC={dash:["M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z","#3b82f6"],new:["M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z","#ec4899"],retur:["M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z","#f97316"],queue:["M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z","#8b5cf6"],verif:["M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z","#22c55e"],stok:["M20 2H4c-1 0-2 .9-2 2v3.01c0 .72.43 1.34 1 1.69V20c0 1.1 1.1 2 2 2h14c.9 0 2-.9 2-2V8.7c.57-.35 1-.97 1-1.69V4c0-1.1-1-2-2-2zm-5 12H9v-2h6v2zm5-7H4V4h16v3z","#0ea5e9"],tstok:["M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z","#14b8a6"],hist:["M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z","#64748b"]};
+function drawer(o){document.body.classList.toggle("open",!!o)}
+function setTab(k){tab=k;drawer(0);render()}
 let extra={};
 const LBL={};let DLH="";for(const k in BM){const l=BM[k][0]+" ("+k+")";LBL[l]=k;DLH+=`<option value="${esc(l)}">`}
 function renderX(){const e=$("#xl");if(!e)return;const ks=Object.keys(extra);e.innerHTML=ks.length?`<table>${ks.map(k=>`<tr><td>${nm(k)}</td><td>${extra[k]}</td><td><button class="btn s" type="button" onclick="delX('${k}')">Hapus</button></td></tr>`).join("")}</table>`:""}
