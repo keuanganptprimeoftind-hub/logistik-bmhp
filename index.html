@@ -83,7 +83,7 @@ const r2=x=>Math.round(x*100)/100;
 const FB={apiKey:"AIzaSyBRKpn4UfCe0ftYniQCIk5ncx1NTUAHu30",authDomain:"bmhp-klinik-prime.firebaseapp.com",projectId:"bmhp-klinik-prime",storageBucket:"bmhp-klinik-prime.firebasestorage.app",messagingSenderId:"191890296724",appId:"1:191890296724:web:5d52d3cb7b476002eb0981"};
 const DOM="@klinik.local";
 /* Tambah staf di sini: username -> unit ("OK" atau "Farmasi"). Akun login dibuat di Firebase dengan email username@klinik.local */
-const ROLES={admin:{role:"Admin",nama:"Admin"}};
+const ROLES={admin:{role:"Admin",nama:"Admin"},farmasi:{role:"Farmasi",nama:"Farmasi"},operasi:{role:"OK",nama:"Operasi"}};
 firebase.initializeApp(FB);
 const auth=firebase.auth(),fs=firebase.firestore();db=fs;
 let unsub=null;
