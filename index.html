@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Logistik BMHP OK ↔ Farmasi</title>
 <style>
-:root{--bg:#f7f1f8;--fg:#1c2330;--mut:#667085;--card:#fff;--bd:#e1e5ea;--pri:#860a80;--pri-t:#fff;--warn:#b45309;--ok:#15803d;
+:root{--bg:#fbf7ec;--fg:#1c2330;--mut:#667085;--card:#fff;--bd:#e6dcc0;--pri:#c9a227;--pri-t:#2b2100;--warn:#b45309;--ok:#15803d;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12161c;--fg:#e8ecf2;--mut:#98a2b3;--card:#1b212a;--bd:#2c3440;--pri:#e1a0e8;--pri-t:#2a0a2c;--warn:#fbbf24;--ok:#4ade80;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#12161c;--fg:#e8ecf2;--mut:#98a2b3;--card:#1b212a;--bd:#2c3440;--pri:#e1a0e8;--pri-t:#2a0a2c;--warn:#fbbf24;--ok:#4ade80;color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12161c;--fg:#e8ecf2;--mut:#98a2b3;--card:#1b212a;--bd:#2c3440;--pri:#e0b94a;--pri-t:#2b2100;--warn:#fbbf24;--ok:#4ade80;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12161c;--fg:#e8ecf2;--mut:#98a2b3;--card:#1b212a;--bd:#2c3440;--pri:#e0b94a;--pri-t:#2b2100;--warn:#fbbf24;--ok:#4ade80;color-scheme:dark}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
@@ -35,24 +35,24 @@ th{color:var(--mut);font-weight:600;font-size:12px}
 .low{color:var(--warn);font-weight:600}.good{color:var(--ok)}
 .cat{margin-top:6px;padding:6px 8px;border-left:3px solid var(--pri);background:var(--bg);border-radius:4px;font-size:14px;white-space:pre-wrap}
 .hd{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:6px}
-#lg{display:none;position:fixed;inset:0;z-index:20;align-items:center;justify-content:center;padding:env(safe-area-inset-top,0px) 16px env(safe-area-inset-bottom,0px);background:linear-gradient(#faf0fb,#d9b3e0 45%,#8e24aa)}
-.lc{width:min(330px,100%);border-radius:4px;overflow:hidden;box-shadow:0 4px 16px rgba(60,0,70,.45);background:#e6d5e6}
-.lh{padding:34px 16px 30px;text-align:center;color:#fff;background:linear-gradient(135deg,rgba(255,255,255,.2) 25%,transparent 25%) 0 0/48px 48px,linear-gradient(45deg,rgba(255,255,255,.12) 25%,transparent 25%) 0 0/48px 48px,linear-gradient(120deg,#c26bf2,#8a4fc0 60%,#7b3fa8)}
+#lg{display:none;position:fixed;inset:0;z-index:20;align-items:center;justify-content:center;padding:env(safe-area-inset-top,0px) 16px env(safe-area-inset-bottom,0px);background:linear-gradient(#fffaf0,#ecd9a0 45%,#b8860b)}
+.lc{width:min(330px,100%);border-radius:4px;overflow:hidden;box-shadow:0 4px 16px rgba(60,0,70,.45);background:#f3ead2}
+.lh{padding:34px 16px 30px;text-align:center;color:#3a2c00;background:linear-gradient(135deg,rgba(255,255,255,.2) 25%,transparent 25%) 0 0/48px 48px,linear-gradient(45deg,rgba(255,255,255,.12) 25%,transparent 25%) 0 0/48px 48px,linear-gradient(120deg,#e6c55f,#c9a227 60%,#a67c00)}
 .lh b{display:block;font-size:17px}.lh span{font-size:13px;font-weight:600}
 .lb{padding:28px 34px 10px}
 .lf{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #bbb;border-radius:99px;padding:0 14px;margin-bottom:12px;height:38px}
 .lf input{border:0;background:transparent;color:#333;padding:0;flex:1;outline:0;font-size:14px;width:auto;min-width:0}
-.lb button{width:100%;height:36px;border:0;border-radius:99px;background:#860a80;color:#fff;font-weight:600;cursor:pointer}
+.lb button{width:100%;height:36px;border:0;border-radius:99px;background:#c9a227;color:#2b2100;font-weight:600;cursor:pointer}
 .lerr{color:#b00020;font-size:12px;text-align:center;min-height:16px;margin-top:8px}
-.lt{text-align:center;font-size:10px;color:#6b5a6b;padding:4px 0 10px}
+.lt{text-align:center;font-size:10px;color:#6b5d3a;padding:4px 0 10px}
 .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:12px}.k{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px}.k b{display:block;font-size:22px}.k span{font-size:12px;color:var(--mut)}
 #msg{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:10px 12px;border-radius:10px;display:none;z-index:9}
 </style>
 </head>
 <body>
 <div id="lg"><div class="lc"><div class="lh"><b>Klinik Priangan Medical Center</b><span>Provinsi Jawa Barat</span></div><div class="lb">
-<div class="lf"><svg width="13" height="13" viewBox="0 0 24 24" fill="#860a80"><circle cx="12" cy="7" r="5"/><path d="M2 22c0-6 4.5-9 10-9s10 3 10 9z"/></svg><input id="l_u" placeholder="username" autocomplete="username" onkeydown="if(event.key==='Enter')$('#l_p').focus()"></div>
-<div class="lf"><svg width="13" height="13" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="12" rx="2" fill="#860a80"/><path d="M8 10V7a4 4 0 018 0v3" fill="none" stroke="#860a80" stroke-width="3"/></svg><input id="l_p" type="password" placeholder="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()"></div>
+<div class="lf"><svg width="13" height="13" viewBox="0 0 24 24" fill="#8a6a00"><circle cx="12" cy="7" r="5"/><path d="M2 22c0-6 4.5-9 10-9s10 3 10 9z"/></svg><input id="l_u" placeholder="username" autocomplete="username" onkeydown="if(event.key==='Enter')$('#l_p').focus()"></div>
+<div class="lf"><svg width="13" height="13" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="12" rx="2" fill="#8a6a00"/><path d="M8 10V7a4 4 0 018 0v3" fill="none" stroke="#8a6a00" stroke-width="3"/></svg><input id="l_p" type="password" placeholder="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()"></div>
 <button onclick="login()">Log In</button><div class="lerr" id="l_e"></div></div><div class="lt">Sistem Logistik BMHP OK &ndash; Farmasi</div></div></div>
 <main>
 <div class="top"><h1>Logistik BMHP OK ↔ Farmasi</h1>
