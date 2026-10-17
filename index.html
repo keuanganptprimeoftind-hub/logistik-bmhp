@@ -27,6 +27,7 @@ td input{width:76px;padding:5px}
 .wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{text-align:left;padding:6px 4px;border-bottom:1px solid var(--bd);white-space:nowrap}
+td:first-child{white-space:normal;min-width:120px}
 th{color:var(--mut);font-weight:600;font-size:12px}
 .btn{background:var(--pri);color:var(--pri-t);border:0;padding:9px 14px;border-radius:8px;cursor:pointer;margin-top:10px;font-weight:600}
 .btn.s{padding:5px 9px;margin:0;font-size:13px}
@@ -35,16 +36,47 @@ th{color:var(--mut);font-weight:600;font-size:12px}
 .low{color:var(--warn);font-weight:600}.good{color:var(--ok)}
 .cat{margin-top:6px;padding:6px 8px;border-left:3px solid var(--pri);background:var(--bg);border-radius:4px;font-size:14px;white-space:pre-wrap}
 .hd{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;margin-bottom:6px}
-#lg{display:none;position:fixed;inset:0;z-index:20;align-items:center;justify-content:center;padding:env(safe-area-inset-top,0px) 16px env(safe-area-inset-bottom,0px);background:linear-gradient(#fffaf0,#ecd9a0 45%,#b8860b)}
-.lc{width:min(330px,100%);border-radius:4px;overflow:hidden;box-shadow:0 4px 16px rgba(60,0,70,.45);background:#f3ead2}
-.lh{padding:34px 16px 30px;text-align:center;color:#3a2c00;background:linear-gradient(135deg,rgba(255,255,255,.2) 25%,transparent 25%) 0 0/48px 48px,linear-gradient(45deg,rgba(255,255,255,.12) 25%,transparent 25%) 0 0/48px 48px,linear-gradient(120deg,#e6c55f,#c9a227 60%,#a67c00)}
-.lh b{display:block;font-size:17px}.lh span{font-size:13px;font-weight:600}
-.lb{padding:28px 34px 10px}
-.lf{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #bbb;border-radius:99px;padding:0 14px;margin-bottom:12px;height:38px}
-.lf input{border:0;background:transparent;color:#333;padding:0;flex:1;outline:0;font-size:14px;width:auto;min-width:0}
-.lb button{width:100%;height:36px;border:0;border-radius:99px;background:#c9a227;color:#2b2100;font-weight:600;cursor:pointer}
-.lerr{color:#b00020;font-size:12px;text-align:center;min-height:16px;margin-top:8px}
-.lt{text-align:center;font-size:10px;color:#6b5d3a;padding:4px 0 10px}
+#lg{display:none;position:fixed;inset:0;z-index:20;align-items:center;justify-content:center;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px));overflow:hidden auto;background:radial-gradient(circle at 12% 18%,rgba(255,246,208,.95),transparent 42%),radial-gradient(circle at 88% 88%,rgba(110,72,0,.6),transparent 50%),linear-gradient(135deg,#f6e19a,#d4a72c 55%,#8a6200)}
+#lg::before,#lg::after{content:"";position:absolute;border-radius:50%;background:rgba(255,255,255,.16);pointer-events:none}
+#lg::before{width:420px;height:420px;left:-130px;top:-150px;animation:fl 14s ease-in-out infinite}
+#lg::after{width:540px;height:540px;right:-200px;bottom:-220px;background:rgba(255,255,255,.1);animation:fl 18s ease-in-out infinite reverse}
+@keyframes fl{50%{transform:translate(30px,22px) scale(1.06)}}
+@keyframes up{from{opacity:0;transform:translateY(14px)}}
+@media (prefers-reduced-motion:reduce){#lg::before,#lg::after,.lw{animation:none}}
+.lw{position:relative;z-index:1;display:grid;grid-template-columns:1fr;width:min(880px,100%);margin:auto;border-radius:20px;overflow:hidden;background:#fffdf6;box-shadow:0 24px 60px rgba(58,40,0,.5);animation:up .5s ease both}
+@media (min-width:780px){.lw{grid-template-columns:1.05fr 1fr}}
+.lb1{position:relative;overflow:hidden;padding:30px 28px;color:#fff3c9;background:linear-gradient(160deg,#35290a,#6b4f00 58%,#a67c00)}
+.lb1::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 105% -5%,rgba(255,215,0,.32),transparent 55%),radial-gradient(circle at -10% 105%,rgba(255,230,140,.16),transparent 50%)}
+.lb1>*{position:relative;z-index:1}
+.logo{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ffe58a,#d4a72c);box-shadow:0 6px 16px rgba(0,0,0,.35)}
+.logo svg{width:30px;height:30px;fill:#35290a}
+.lb1 h1{font-size:21px;line-height:1.25;margin:16px 0 2px;color:#ffe9a3}
+.lb1 .pv{font-size:13px;opacity:.85;margin:0}
+.lb1 .jd{font-size:15px;font-weight:600;margin:22px 0 0;line-height:1.35}
+.ft{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px;font-size:13px}
+.ft li{display:flex;align-items:center;gap:10px}
+.ft i{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.14)}
+.ft svg{width:18px;height:18px;fill:#ffe9a3}
+@media (max-width:779px){.lb1{padding:20px}.ft,.lb1 .jd{display:none}.lb1 h1{margin-top:10px;font-size:18px}.logo{width:48px;height:48px}}
+.lb2{padding:32px 30px 22px;color:#2b2100;display:flex;flex-direction:column;justify-content:center}
+.lb2 h3{margin:0;font-size:22px}
+.lb2 .sub{margin:4px 0 20px;font-size:13px;color:#7a6a3a}
+.lb2 label{color:#6b5a2a;font-size:12px;font-weight:600;margin:0 0 5px;letter-spacing:.3px}
+.lf{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid #e2d6a8;border-radius:12px;padding:0 12px;margin-bottom:14px;height:46px;transition:border-color .15s,box-shadow .15s}
+.lf:focus-within{border-color:#c9a227;box-shadow:0 0 0 4px rgba(201,162,39,.25)}
+.lf>svg{flex:none;width:18px;height:18px;fill:#a67c00}
+.lf input{border:0;background:transparent;color:#2b2100;padding:0;flex:1;outline:0;font-size:15px;width:auto;min-width:0;border-radius:0}
+.lf input::placeholder{color:#b3a574}
+.lf input:-webkit-autofill{-webkit-box-shadow:0 0 0 40px #fff inset;-webkit-text-fill-color:#2b2100}
+.eye{flex:none;background:none;border:0;cursor:pointer;padding:4px;display:grid;border-radius:8px}
+.eye svg{width:20px;height:20px;fill:#a67c00}
+.eye:hover svg{fill:#6b4f00}
+.lbtn{width:100%;height:46px;border:0;border-radius:12px;cursor:pointer;font-size:15px;font-weight:700;color:#2b2100;background:linear-gradient(180deg,#e6c04f,#c9a227);box-shadow:0 8px 18px rgba(201,162,39,.45);transition:transform .12s,filter .12s}
+.lbtn:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.lbtn:active{transform:none}
+.lbtn:disabled{opacity:.65;cursor:default;transform:none}
+.lerr{color:#b00020;font-size:13px;text-align:center;min-height:18px;margin-top:10px}
+.lt{text-align:center;font-size:11px;color:#8a7a4a;margin-top:12px}
 .kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px;margin-bottom:12px}.k{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:10px}.k b{display:block;font-size:22px}.k span{font-size:12px;color:var(--mut)}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--pri);z-index:11}
 #bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;display:flex;align-items:center;gap:10px;background:var(--pri);color:var(--pri-t);padding:8px 12px}
@@ -63,17 +95,41 @@ body.open #dr{transform:none}body.open #scrim{display:block}
 .mi svg{width:26px;height:26px;fill:#fff}
 .mi.on{color:var(--fg);font-weight:600}.mi.on i{box-shadow:0 0 0 3px var(--pri)}
 .mi b{position:absolute;top:-4px;right:-4px;min-width:19px;height:19px;border-radius:10px;background:#dc2626;color:#fff;font-size:11px;display:grid;place-items:center;padding:0 5px;font-style:normal}
-#msg{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:10px 12px;border-radius:10px;display:none;z-index:14}
+.mb{position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:15;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:calc(16px + env(safe-area-inset-top,0px)) 12px 16px}
+.mc{background:var(--card);border-radius:12px;padding:14px;width:min(560px,100%)}
+.tx{background:rgba(245,158,11,.18);color:var(--warn);border-color:var(--warn);font-weight:700}
+.xh{margin:14px 0 6px;color:var(--warn)}
+.xb{background:rgba(245,158,11,.1);border-radius:8px;padding:4px 6px}
+#msg{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:10px 12px;border-radius:10px;display:none;z-index:25}
 </style>
 </head>
 <body>
 <datalist id="dl"></datalist>
-<div id="lg"><div class="lc"><div class="lh"><b>Klinik Priangan Medical Center</b><span>Provinsi Jawa Barat</span></div><div class="lb">
-<div class="lf"><svg width="13" height="13" viewBox="0 0 24 24" fill="#8a6a00"><circle cx="12" cy="7" r="5"/><path d="M2 22c0-6 4.5-9 10-9s10 3 10 9z"/></svg><input id="l_u" placeholder="username" autocomplete="username" onkeydown="if(event.key==='Enter')$('#l_p').focus()"></div>
-<div class="lf"><svg width="13" height="13" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="12" rx="2" fill="#8a6a00"/><path d="M8 10V7a4 4 0 018 0v3" fill="none" stroke="#8a6a00" stroke-width="3"/></svg><input id="l_p" type="password" placeholder="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()"></div>
-<button onclick="login()">Log In</button><div class="lerr" id="l_e"></div></div><div class="lt">Sistem Logistik BMHP OK &ndash; Farmasi</div></div></div>
+<div id="lg"><div class="lw">
+<section class="lb1">
+<div class="logo"><svg viewBox="0 0 24 24"><path d="M10 3h4v7h7v4h-7v7h-4v-7H3v-4h7z"/></svg></div>
+<h1>Klinik Priangan<br>Medical Center</h1><p class="pv">Provinsi Jawa Barat</p>
+<p class="jd">Logistik BMHP<br>Kamar Operasi &harr; Farmasi</p>
+<ul class="ft">
+<li><i><svg viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></i>Permintaan paket BMHP yang terintegrasi</li>
+<li><i><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></i>Retur sisa tercatat dan terverifikasi</li>
+<li><i><svg viewBox="0 0 24 24"><path d="M20 2H4c-1 0-2 .9-2 2v3.01c0 .72.43 1.34 1 1.69V20c0 1.1 1.1 2 2 2h14c.9 0 2-.9 2-2V8.7c.57-.35 1-.97 1-1.69V4c0-1.1-1-2-2-2zm-5 12H9v-2h6v2zm5-7H4V4h16v3z"/></svg></i>Stok real-time yang transparan</li>
+</ul>
+</section>
+<section class="lb2">
+<h3>Selamat datang</h3><p class="sub">Masuk untuk melanjutkan</p>
+<label for="l_u">Username</label>
+<div class="lf"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="5"/><path d="M2 22c0-6 4.5-9 10-9s10 3 10 9z"/></svg><input id="l_u" placeholder="Masukkan username" autocomplete="username" autocapitalize="none" onkeydown="if(event.key==='Enter')$('#l_p').focus()"></div>
+<label for="l_p">Password</label>
+<div class="lf"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="12" rx="2"/><path d="M8 10V7a4 4 0 018 0v3" fill="none" stroke="#a67c00" stroke-width="3"/></svg><input id="l_p" type="password" placeholder="Masukkan password" autocomplete="current-password" onkeydown="if(event.key==='Enter')login()"><button type="button" class="eye" onclick="eye()" aria-label="Tampilkan atau sembunyikan password"><svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg></button></div>
+<button class="lbtn" id="l_b" onclick="login()">Log In</button>
+<div class="lerr" id="l_e"></div>
+<div class="lt">Lupa password? Hubungi Admin.</div>
+</section>
+</div></div>
 <header id="bar"><button id="hb" onclick="drawer(1)" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg></button><span id="ttl">Logistik BMHP</span><span id="roles"></span></header>
 <div id="scrim" onclick="drawer(0)"></div>
+<div id="mdl"></div>
 <nav id="dr"><div id="dg"></div></nav>
 <main>
 <div id="view"><p class="muted">Memuat…</p></div>
@@ -93,9 +149,9 @@ let role="OK",tab="dash",per="w",sess=null,need=1,rows=[],db=null,pending=false;
 const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function toast(t){const m=$("#msg");m.textContent=t;m.style.display="block";clearTimeout(toast.t);toast.t=setTimeout(()=>m.style.display="none",3500)}
-function stok(){const s={};for(const k in BM)s[k]=BM[k][2];masuk.forEach(m=>{if(m.k in s)s[m.k]+=m.qty});rows.forEach(t=>{if(t.status==="Diminta")return;t.items.forEach(i=>{if(!(i.k in s))return;s[i.k]-=i.dis;if(i.st==="Terverifikasi")s[i.k]+=i.ret})});for(const k in s)s[k]=Math.round(s[k]*100)/100;return s}
+function stok(R=rows){const s={};for(const k in BM)s[k]=BM[k][2];masuk.forEach(m=>{if(!m.batal&&m.k in s)s[m.k]+=m.qty});R.forEach(t=>{if(t.status==="Diminta"||t.status==="Dibatalkan")return;t.items.forEach(i=>{if(!(i.k in s))return;s[i.k]-=i.dis;if(i.st==="Terverifikasi")s[i.k]+=i.ret})});for(const k in s)s[k]=Math.round(s[k]*100)/100;return s}
 const fmt=d=>new Date(d).toLocaleString("id-ID",{dateStyle:"short",timeStyle:"short"});
-const nm=k=>esc(BM[k]?BM[k][0]:k);const bn=k=>BM[k]?BM[k][0]:k;
+const nm=k=>esc(BM[k]?BM[k][0]:k);const bn=k=>BM[k]?BM[k][0]:k;const ni=i=>nm(i.k)+(i.x?` <span class="tag tx">TAMBAHAN</span>`:"");
 function head(t){return `<div class="hd"><div><b>${esc(t.pasien)}</b><div class="muted">${esc(t.operasi)} · ${esc(t.dokter)} · ${fmt(t.tgl)}</div>${t.catatan?`<div class="cat"><b>Catatan:</b> ${esc(t.catatan)}</div>`:""}</div><span class="tag">${esc(t.status)}</span></div>`}
 function empty(m){return `<p class="muted">${m}</p>`}
 const r2=x=>Math.round(x*100)/100;
@@ -109,11 +165,12 @@ let unsub=null,unsub2=null,masuk=[];
 const hasR=n=>Object.prototype.hasOwnProperty.call(ROLES,n);
 function who(){return sess&&hasR(sess)?{s:"ok",role:ROLES[sess].role,nama:ROLES[sess].nama}:{s:"login"}}
 async function login(){const u=$("#l_u").value.trim().toLowerCase(),p=$("#l_p").value;if(!u||!p){$("#l_e").textContent="Isi username dan password.";return}
-$("#l_e").textContent="Memeriksa\u2026";
-try{await auth.signInWithEmailAndPassword(u+DOM,p);$("#l_p").value="";$("#l_e").textContent=""}catch(e){const c=e.code||"error",m={"auth/network-request-failed":"Tidak ada koneksi internet.","auth/operation-not-allowed":"Login Email/Password belum diaktifkan di Firebase.","auth/too-many-requests":"Terlalu banyak percobaan. Tunggu beberapa menit.","auth/unauthorized-domain":"Domain belum diizinkan di Firebase (Authorized domains).","auth/invalid-email":"Format username tidak valid."};$("#l_e").textContent=(m[c]||"Username atau password salah.")+" ["+c+"]"}}
+$("#l_e").textContent="Memeriksa\u2026";$("#l_b").disabled=true;
+try{await auth.signInWithEmailAndPassword(u+DOM,p);$("#l_p").value="";$("#l_e").textContent=""}catch(e){const c=e.code||"error",m={"auth/network-request-failed":"Tidak ada koneksi internet.","auth/operation-not-allowed":"Login Email/Password belum diaktifkan di Firebase.","auth/too-many-requests":"Terlalu banyak percobaan. Tunggu beberapa menit.","auth/unauthorized-domain":"Domain belum diizinkan di Firebase (Authorized domains).","auth/invalid-email":"Format username tidak valid."};$("#l_e").textContent=(m[c]||"Username atau password salah.")+" ["+c+"]"}$("#l_b").disabled=false}
 function logout(){auth.signOut()}
+function eye(){const i=$("#l_p");i.type=i.type==="password"?"text":"password"}
 const V={
-dash(){const lim=per==="a"?0:Date.now()-{d:864e5,w:6048e5,m:2592e6}[per],L=rows.filter(t=>t.tgl>=lim&&t.status!=="Diminta"),A={};
+dash(){const lim=per==="a"?0:Date.now()-{d:864e5,w:6048e5,m:2592e6}[per],L=rows.filter(t=>t.tgl>=lim&&t.status!=="Diminta"&&t.status!=="Dibatalkan"),A={};
 let sd=0,sr=0,sm=0,sv=0;
 L.forEach(t=>t.items.forEach(i=>{const a=A[i.k]=A[i.k]||{d:0,o:0,r:0,m:0,v:0,u:0};a.d+=i.dis;sd+=i.dis;
 if(i.st==="Belum Diinput")a.o+=i.dis;else{a.r+=i.ret;sr+=i.ret;a.u+=i.dis-i.ret;if(i.st==="Menunggu Verifikasi"){a.m+=i.ret;sm+=i.ret}if(i.st==="Terverifikasi"){a.v+=i.ret;sv+=i.ret}}}));
@@ -132,26 +189,30 @@ new(){return `<div class="card"><h2>Permintaan BMHP ke Farmasi</h2>
 <label>Catatan</label><textarea id="f_c" rows="2"></textarea>
 <button class="btn" onclick="kirim()">Kirim ke Farmasi</button></div>`},
 queue(){const s=stok(),l=rows.filter(t=>t.status==="Diminta");if(!l.length)return empty("Tidak ada permintaan baru.");
-return l.map(t=>`<div class="card">${head(t)}<div class="wrap"><table><tr><th>Barang</th><th>Diminta</th><th>Stok</th><th>Disiapkan</th></tr>${t.items.map(i=>`<tr><td>${nm(i.k)}</td><td>${i.dim}</td><td class="${s[i.k]<i.dim?"low":""}">${s[i.k]}</td><td><input type="number" step="any" min="0" max="${s[i.k]}" value="${i.dis}" data-t="${t.id}" data-k="${i.k}"></td></tr>`).join("")}</table></div>
-<button class="btn" onclick="serah('${t.id}')">✔ Diserahkan ke OK</button></div>`).join("")},
+const H='<tr><th>Barang</th><th>Diminta</th><th>Stok</th><th>Disiapkan</th></tr>',R=(t,i,n)=>`<tr><td>${ni(i)}</td><td>${i.dim}</td><td class="${s[i.k]<i.dim?"low":""}">${s[i.k]}</td><td><input type="number" step="any" min="0" max="${s[i.k]}" value="${i.dis}" data-t="${t.id}" data-n="${n}"></td></tr>`;
+return l.map(t=>{const a=t.items.map((i,n)=>[i,n]),sd=a.filter(([i])=>!i.x),ex=a.filter(([i])=>i.x);
+return `<div class="card">${head(t)}${ex.length?`<div class="cat" style="border-color:#f59e0b"><b>Ada ${ex.length} barang tambahan</b> di luar paket standar. Lihat bagian TAMBAHAN di bawah.</div>`:""}
+<h2 style="margin-top:10px">Barang standar paket</h2><div class="wrap"><table>${H}${sd.map(([i,n])=>R(t,i,n)).join("")}</table></div>
+${ex.length?`<h2 class="xh">\u26a0 TAMBAHAN di luar paket standar</h2><div class="wrap xb"><table>${H}${ex.map(([i,n])=>R(t,i,n)).join("")}</table></div>`:""}
+<button class="btn" onclick="serah('${t.id}')">\u2714 Diserahkan ke OK</button></div>`}).join("")},
 retur(){const l=rows.filter(t=>t.status==="Diserahkan ke OK");if(!l.length)return empty("Tidak ada pasien yang menunggu input retur.");
-return `<p class="muted">Isi HANYA barang yang sisa. Barang yang tidak diisi dihitung terpakai.</p>`+l.map(t=>`<div class="card">${head(t)}<div class="wrap"><table><tr><th>Barang</th><th>Disiapkan</th><th>Sisa dikembalikan</th></tr>${t.items.map(i=>`<tr><td>${nm(i.k)}</td><td>${i.dis}</td><td><input type="number" step="any" min="0" max="${i.dis}" value="0" data-t="${t.id}" data-k="${i.k}"></td></tr>`).join("")}</table></div>
+return `<p class="muted">Isi HANYA barang yang sisa. Barang yang tidak diisi dihitung terpakai.</p>`+l.map(t=>`<div class="card">${head(t)}<div class="wrap"><table><tr><th>Barang</th><th>Disiapkan</th><th>Sisa dikembalikan</th></tr>${t.items.map((i,n)=>`<tr><td>${ni(i)}</td><td>${i.dis}</td><td><input type="number" step="any" min="0" max="${i.dis}" value="0" data-t="${t.id}" data-n="${n}"></td></tr>`).join("")}</table></div>
 <button class="btn" onclick="tutup('${t.id}')">Tutup Input Retur</button></div>`).join("")},
 verif(){const l=rows.filter(t=>t.status==="Menunggu Verifikasi Retur");if(!l.length)return empty("Tidak ada retur yang perlu diverifikasi.");
-return l.map(t=>`<div class="card">${head(t)}<div class="wrap"><table><tr><th>Barang</th><th>Retur</th><th></th></tr>${t.items.filter(i=>i.st!=="Tidak Ada Retur").map(i=>`<tr><td>${nm(i.k)}</td><td>${i.ret}</td><td>${i.st==="Terverifikasi"?`<span class="good">Terverifikasi</span>`:`<button class="btn s" onclick="verif('${t.id}','${i.k}')">Verifikasi Retur</button>`}</td></tr>`).join("")}</table></div></div>`).join("")},
+return l.map(t=>`<div class="card">${head(t)}<div class="wrap"><table><tr><th>Barang</th><th>Retur</th><th></th></tr>${t.items.map((i,n)=>[i,n]).filter(([i])=>i.st!=="Tidak Ada Retur").map(([i,n])=>`<tr><td>${ni(i)}</td><td>${i.ret}</td><td>${i.st==="Terverifikasi"?`<span class="good">Terverifikasi</span>`:`<button class="btn s" onclick="verif('${t.id}',${n})">Verifikasi Retur</button>`}</td></tr>`).join("")}</table></div></div>`).join("")},
 stok(){return `<div class="card"><input id="st_q" placeholder="Cari nama atau kode barang…" oninput="fillStok()"><label style="display:flex;gap:6px;align-items:center"><input id="st_o" type="checkbox" checked onchange="fillStok()" style="width:auto"> Hanya yang ada stok</label></div><div class="card wrap" id="stb"></div><p class="muted">Stok awal dari laporan stok per ${STOK_TGL}. Stok real = stok awal + stok masuk − diserahkan ke OK + retur terverifikasi.</p>`},
-tstok(){const l=masuk.slice(0,30);return `<div class="card"><h2>Tambah Stok</h2><label>Barang</label><input id="s_k" list="dl" placeholder="Ketik nama barang…" autocomplete="off" oninput="hintS()"><div class="muted" id="s_h"></div><label>Jumlah masuk</label><input id="s_q" type="number" step="any" min="0" value="1"><label>Keterangan (mis. no. faktur / supplier)</label><input id="s_c" maxlength="100"><button class="btn" onclick="tambahStok()">Simpan Stok Masuk</button></div><div class="card wrap"><h2>Riwayat stok masuk</h2>${l.length?`<table><tr><th>Waktu</th><th>Barang</th><th>Jumlah</th><th>Keterangan</th><th>Oleh</th></tr>${l.map(m=>`<tr><td>${fmt(m.tgl)}</td><td>${nm(m.k)}</td><td>+${m.qty}</td><td>${esc(m.ket||"")}</td><td>${esc(m.oleh||"")}</td></tr>`).join("")}</table>`:empty("Belum ada stok masuk.")}</div>`},
+tstok(){const l=masuk.slice(0,30);return `<div class="card"><h2>Tambah Stok</h2><label>Barang</label><input id="s_k" list="dl" placeholder="Ketik nama barang…" autocomplete="off" oninput="hintS()"><div class="muted" id="s_h"></div><label>Jumlah masuk</label><input id="s_q" type="number" step="any" min="0" value="1"><label>Keterangan (mis. no. faktur / supplier)</label><input id="s_c" maxlength="100"><button class="btn" onclick="tambahStok()">Simpan Stok Masuk</button></div><div class="card wrap"><h2>Riwayat stok masuk</h2>${l.length?`<table><tr><th>Waktu</th><th>Barang</th><th>Jumlah</th><th>Keterangan</th><th>Oleh</th><th></th></tr>${l.map(m=>`<tr${m.batal?` style="text-decoration:line-through;opacity:.6"`:""}><td>${fmt(m.tgl)}</td><td>${nm(m.k)}</td><td>+${m.qty}</td><td>${esc(m.ket||"")}${m.batal?" (dibatalkan: "+esc(m.batalAlasan||"")+")":""}</td><td>${esc(m.oleh||"")}</td><td>${role==="Admin"&&!m.batal?`<button class="btn s" onclick="batalMasuk('${m.id}')">Batalkan</button>`:""}</td></tr>`).join("")}</table>`:empty("Belum ada stok masuk.")}</div>`},
 hist(){const bt=role==="Admin"?`<button class="btn s" style="margin-bottom:10px" onclick="hapusRiwayat()">Hapus semua riwayat (Admin)</button>`:"";if(!rows.length)return bt+empty("Belum ada transaksi.");
-return bt+rows.map(t=>`<div class="card">${head(t)}<div class="wrap"><table><tr><th>Barang</th><th>Disiapkan</th><th>Retur</th><th>Terpakai</th></tr>${t.items.map(i=>`<tr><td>${nm(i.k)}</td><td>${t.status==="Diminta"?"-":i.dis}</td><td>${i.ret}</td><td>${["Diminta","Diserahkan ke OK"].includes(t.status)?"-":i.dis-i.ret}</td></tr>`).join("")}</table></div></div>`).join("")}
+return bt+rows.map(t=>`<div class="card">${head(t)}${histx(t)}<div class="wrap"><table><tr><th>Barang</th><th>Disiapkan</th><th>Retur</th><th>Terpakai</th></tr>${t.items.map(i=>`<tr><td>${ni(i)}</td><td>${t.status==="Diminta"?"-":i.dis}</td><td>${i.ret}</td><td>${["Diminta","Diserahkan ke OK","Dibatalkan"].includes(t.status)?"-":i.dis-i.ret}</td></tr>`).join("")}</table></div>${logx(t)}</div>`).join("")}
 };
 function render(){
 const w=who();$("#lg").style.display=w.s==="ok"?"none":"flex";
 if(w.s!=="ok")return;
 if(need>0){$("#view").innerHTML=empty("Memuat\u2026");return}
 role=w.role;
-$("#roles").innerHTML=`<span class="tag">${esc(w.nama)}${role==="Admin"?"":" \u00b7 "+(role==="OK"?"Kamar Operasi":esc(role))}</span> <button class="btn s" onclick="logout()">Keluar</button>`;
+$("#roles").innerHTML=`<span class="tag">${esc(w.nama)}${role==="Admin"||w.nama.toLowerCase()===role.toLowerCase()?"":" \u00b7 "+(role==="OK"?"Kamar Operasi":esc(role))}</span> <button class="btn s" onclick="logout()">Keluar</button>`;
 const ks=Object.keys(TABS).filter(k=>TABS[k][1]==="*"||role==="Admin"||TABS[k][1]===role);if(!ks.includes(tab))tab=ks[0];
-const badge=k=>{const n={queue:rows.filter(t=>t.status==="Diminta").length,retur:rows.filter(t=>t.status==="Diserahkan ke OK").length,verif:rows.filter(t=>t.status==="Menunggu Verifikasi Retur").length}[k];return n||0};
+const badge=k=>{const n={queue:rows.filter(t=>t.status==="Diminta").length,retur:rows.filter(t=>t.status==="Diserahkan ke OK").length,verif:rows.filter(t=>t.status==="Menunggu Verifikasi Retur").length,hist:role==="Admin"?rows.filter(t=>t.minta).length:0}[k];return n||0};
 $("#ttl").textContent=TABS[tab][0];
 $("#dg").innerHTML=ks.map(k=>{const n=badge(k);return `<button class="mi${k===tab?" on":""}" onclick="setTab('${k}')"><i style="background:${IC[k][1]}"><svg viewBox="0 0 24 24"><path d="${IC[k][0]}"/></svg>${n?`<b>${n}</b>`:""}</i>${TABS[k][0]}</button>`}).join("");
 $("#view").innerHTML=V[tab]();if(tab==="new")prev();if(tab==="stok")fillStok()}
@@ -168,23 +229,76 @@ function fillStok(){const e=$("#stb");if(!e)return;const s=stok(),q=($("#st_q").
 function hintS(){const k=LBL[$("#s_k").value.trim()];$("#s_h").textContent=k?"Stok saat ini: "+stok()[k]+" "+BM[k][1]:""}
 async function tambahStok(){const k=LBL[$("#s_k").value.trim()],q=Math.round((+$("#s_q").value||0)*100)/100,c=$("#s_c").value.trim();if(!k)return toast("Pilih barang dari daftar saran.");if(q<=0)return toast("Isi jumlah lebih dari 0.");
 try{await fs.collection("stok_masuk").doc("M"+Date.now().toString(36)).set({k,qty:q,tgl:Date.now(),ket:c,oleh:sess});toast("Stok ditambahkan.")}catch(e){toast(e&&e.code==="permission-denied"?"Tidak punya izin menulis. Login ulang dulu.":"Gagal menyimpan stok.")}}
+const mkLog=(a,r)=>firebase.firestore.FieldValue.arrayUnion({t:Date.now(),o:sess,a,r});
+function alasan(m){const r=prompt(m+"\n\nTulis alasan (wajib):");if(r===null)return null;if(!r.trim()){toast("Alasan wajib diisi.");return null}return r.trim().slice(0,200)}
+function admUpd(id,patch,aksi,r,ok){patch.log=mkLog(aksi,r);patch.minta=null;return upd(id,patch,ok)}
+function okStok(id,nt){const s=stok(rows.map(x=>x.id===id?nt:x));for(const i of nt.items)if(s[i.k]<0){toast("Stok "+bn(i.k)+" akan menjadi negatif ("+s[i.k]+"). Tambah stok dulu.");return false}return true}
+function logx(t){return t.log&&t.log.length?`<details><summary class="muted">Log perubahan (${t.log.length})</summary>${t.log.slice().reverse().map(l=>`<div class="muted">${fmt(l.t)} \u00b7 ${esc(l.o)} \u00b7 ${esc(l.a)} \u2014 ${esc(l.r)}</div>`).join("")}</details>`:""}
+function histx(t){const A=role==="Admin",b=[];let h="";
+if(t.status==="Dibatalkan")h+=`<div class="cat" style="border-color:#dc2626"><b>Dibatalkan</b> oleh ${esc(t.batalOleh||"-")}: ${esc(t.batalAlasan||"-")}</div>`;
+if(t.minta)h+=`<div class="cat" style="border-color:#f59e0b"><b>Minta koreksi</b> dari ${esc(t.minta.o)} (${fmt(t.minta.t)}): ${esc(t.minta.ket)}</div>`;
+const B=(f,l)=>`<button class="btn s" onclick="${f}">${l}</button>`;
+if(A){b.push(B(`openEdit('${t.id}')`,"Koreksi"));
+if(t.status==="Dibatalkan")b.push(B(`pulihTrx('${t.id}')`,"Pulihkan transaksi"));
+else{b.push(B(`batalTrx('${t.id}')`,"Batalkan transaksi"));
+if(["Menunggu Verifikasi Retur","Selesai"].includes(t.status))b.push(B(`bukaRetur('${t.id}')`,"Buka ulang input retur"));
+t.items.forEach((i,n)=>{if(i.st==="Terverifikasi")b.push(B(`batalVerif('${t.id}',${n})`,"Batalkan verifikasi: "+esc(bn(i.k))))})}
+if(t.minta)b.push(B(`tutupMinta('${t.id}')`,"Tutup permintaan"))}
+else if(!t.minta&&t.status!=="Dibatalkan")b.push(B(`ajukan('${t.id}')`,"Ajukan koreksi ke Admin"));
+return h+(b.length?`<div style="display:flex;gap:6px;flex-wrap:wrap;margin:8px 0">${b.join("")}</div>`:"")}
+function ajukan(id){const r=alasan("Ajukan koreksi ke Admin untuk transaksi ini?");if(!r)return;upd(id,{minta:{o:sess,t:Date.now(),ket:r},log:mkLog("Ajukan koreksi",r)},"Permintaan koreksi terkirim ke Admin.")}
+function tutupMinta(id){if(role!=="Admin")return;admUpd(id,{},"Tutup permintaan koreksi","Ditangani Admin","Permintaan ditutup.")}
+function batalTrx(id){if(role!=="Admin")return;const t=rows.find(x=>x.id===id),r=alasan("Batalkan seluruh transaksi "+t.pasien+"? Stok yang sudah diserahkan akan dikembalikan.");if(!r)return;
+admUpd(id,{status:"Dibatalkan",sebelum:t.status,batalAlasan:r,batalOleh:sess,batalTgl:Date.now()},"Batalkan transaksi",r,"Transaksi dibatalkan.")}
+function pulihTrx(id){if(role!=="Admin")return;const t=rows.find(x=>x.id===id),st=t.sebelum||"Diminta",r=alasan("Pulihkan transaksi ini ke status "+st+"?");if(!r)return;
+if(!okStok(id,{...t,status:st}))return;admUpd(id,{status:st,batalAlasan:null,batalOleh:null,batalTgl:null},"Pulihkan transaksi",r,"Transaksi dipulihkan.")}
+function bukaRetur(id){if(role!=="Admin")return;const t=rows.find(x=>x.id===id),r=alasan("Buka ulang input retur? Semua jumlah retur transaksi ini dikosongkan dan OK harus mengisi ulang.");if(!r)return;
+const items=t.items.map(i=>({...i,ret:0,st:"Belum Diinput",tglVerif:null})),nt={...t,status:"Diserahkan ke OK",items};
+if(!okStok(id,nt))return;admUpd(id,{items,status:"Diserahkan ke OK"},"Buka ulang input retur",r,"Input retur dibuka ulang.")}
+function batalVerif(id,n){if(role!=="Admin")return;const t=rows.find(x=>x.id===id),k=t.items[n].k,r=alasan("Batalkan verifikasi retur "+bn(k)+"?");if(!r)return;
+const items=t.items.map((i,m)=>m===n?{...i,st:"Menunggu Verifikasi",tglVerif:null}:i),nt={...t,status:"Menunggu Verifikasi Retur",items};
+if(!okStok(id,nt))return;admUpd(id,{items,status:"Menunggu Verifikasi Retur"},"Batalkan verifikasi: "+bn(k),r,"Verifikasi dibatalkan, stok dikoreksi.")}
+function openEdit(id){const t=rows.find(x=>x.id===id);if(!t||role!=="Admin")return;
+const ST=["Diminta","Diserahkan ke OK","Menunggu Verifikasi Retur","Selesai","Dibatalkan"],IS=["Belum Diinput","Menunggu Verifikasi","Tidak Ada Retur","Terverifikasi"],O=(a,v)=>a.map(x=>`<option${x===v?" selected":""}>${esc(x)}</option>`).join("");
+$("#mdl").innerHTML=`<div class="mb"><div class="mc"><h2>Koreksi transaksi (Admin)</h2>
+<label>Nama pasien / ID</label><input id="e_p" value="${esc(t.pasien)}" maxlength="60">
+<label>Dokter</label><select id="e_k">${O(DR.includes(t.dokter)?DR:DR.concat([t.dokter]),t.dokter)}</select>
+<label>Catatan</label><textarea id="e_c" rows="2">${esc(t.catatan||"")}</textarea>
+<label>Status transaksi</label><select id="e_s">${O(ST,t.status)}</select>
+<div class="wrap" style="margin-top:8px"><table><tr><th>Barang</th><th>Disiapkan</th><th>Retur</th><th>Status retur</th></tr>${t.items.map((i,n)=>`<tr><td>${ni(i)}</td><td><input type="number" step="any" min="0" id="e_d${n}" value="${i.dis}"></td><td><input type="number" step="any" min="0" id="e_r${n}" value="${i.ret}"></td><td><select id="e_t${n}">${O(IS,i.st)}</select></td></tr>`).join("")}</table></div>
+<label>Alasan koreksi (wajib)</label><input id="e_a" maxlength="200">
+<div style="display:flex;gap:8px"><button class="btn" onclick="saveEdit('${t.id}')">Simpan Koreksi</button><button class="btn" style="background:var(--bd);color:var(--fg)" onclick="closeEdit()">Batal</button></div></div></div>`}
+function closeEdit(){$("#mdl").innerHTML=""}
+function saveEdit(id){const t=rows.find(x=>x.id===id),a=$("#e_a").value.trim(),p=$("#e_p").value.trim();if(!a)return toast("Alasan koreksi wajib diisi.");if(!p)return toast("Nama pasien tidak boleh kosong.");
+const items=t.items.map((i,n)=>({...i,dis:r2(+$("#e_d"+n).value||0),ret:r2(+$("#e_r"+n).value||0),st:$("#e_t"+n).value}));
+for(const i of items)if(i.dis<0||i.ret<0||i.ret>i.dis)return toast("Cek jumlah "+bn(i.k)+": retur tidak boleh melebihi yang disiapkan.");
+const nt={...t,pasien:p,dokter:$("#e_k").value,catatan:$("#e_c").value.trim(),status:$("#e_s").value,items};
+if(!okStok(id,nt))return;
+const ch=[];["pasien","dokter","catatan","status"].forEach(f=>{if((t[f]||"")!==(nt[f]||""))ch.push(f+": "+(t[f]||"-")+" \u2192 "+(nt[f]||"-"))});
+t.items.forEach((o,n)=>{const i=items[n];if(o.dis!==i.dis)ch.push(bn(i.k)+" disiapkan "+o.dis+"\u2192"+i.dis);if(o.ret!==i.ret)ch.push(bn(i.k)+" retur "+o.ret+"\u2192"+i.ret);if(o.st!==i.st)ch.push(bn(i.k)+" status retur "+o.st+"\u2192"+i.st)});
+const patch={pasien:nt.pasien,dokter:nt.dokter,catatan:nt.catatan,status:nt.status,items};
+if(nt.status==="Dibatalkan"&&t.status!=="Dibatalkan"){patch.sebelum=t.status;patch.batalAlasan=a;patch.batalOleh=sess;patch.batalTgl=Date.now()}
+admUpd(id,patch,("Koreksi: "+(ch.join("; ")||"tanpa perubahan data")).slice(0,300),a,"Koreksi disimpan.");closeEdit()}
+async function batalMasuk(id){if(role!=="Admin")return;const m=masuk.find(x=>x.id===id),r=m&&alasan("Batalkan stok masuk "+bn(m.k)+" (+"+m.qty+")?");if(!r)return;
+try{await fs.collection("stok_masuk").doc(id).update({batal:true,batalAlasan:r,batalOleh:sess,batalTgl:Date.now()});toast("Stok masuk dibatalkan.")}catch(e){toast("Gagal membatalkan stok masuk.")}}
 async function hapusRiwayat(){if(role!=="Admin")return;const t=prompt("Ini menghapus SEMUA riwayat transaksi dan tidak bisa dibatalkan. Ketik HAPUS untuk melanjutkan.");if(t!=="HAPUS")return toast("Dibatalkan.");
 try{const q=await fs.collection("trx").get(),b=fs.batch();q.docs.slice(0,450).forEach(d=>b.delete(d.ref));await b.commit();toast(q.size>450?"450 transaksi terhapus, klik lagi untuk sisanya.":"Semua riwayat terhapus.")}catch(e){toast("Gagal menghapus riwayat.")}}
 function prev(){const o=$("#f_o");if(!o)return;renderX();$("#prev").innerHTML=`<table><tr><th>Barang</th><th>Qty standar</th></tr>${Object.entries(PK[o.value]).map(([k,q])=>`<tr><td>${nm(k)}</td><td>${q} ${BM[k]?esc(BM[k][1]):""}</td></tr>`).join("")}</table>`}
 async function upd(id,p,ok){try{await db.collection("trx").doc(id).update(p);if(ok)toast(ok)}catch(e){toast(e&&e.code==="permission-denied"?"Akun ini tidak punya izin menulis (coba login ulang).":"Gagal menyimpan, coba lagi.")}}
 async function kirim(){const p=$("#f_p").value.trim();if(!p)return toast("Isi nama pasien / ID dulu.");const op=$("#f_o").value;
-const t={pasien:p,dokter:$("#f_d").value,operasi:op,catatan:$("#f_c").value.trim(),tgl:Date.now(),status:"Diminta",items:Object.entries((()=>{const it={...PK[op]};for(const k in extra)it[k]=Math.round(((it[k]||0)+extra[k])*100)/100;return it})()).map(([k,q])=>({k,dim:q,dis:q,ret:0,st:"Belum Diinput"}))};
+const t={pasien:p,dokter:$("#f_d").value,operasi:op,catatan:$("#f_c").value.trim(),tgl:Date.now(),status:"Diminta",items:[...Object.entries(PK[op]).map(([k,q])=>({k,dim:q,dis:q,ret:0,st:"Belum Diinput"})),...Object.entries(extra).map(([k,q])=>({k,dim:q,dis:q,ret:0,st:"Belum Diinput",x:1}))]};
 try{await db.collection("trx").doc("T"+Date.now().toString(36)).set(t);toast("Permintaan terkirim ke Farmasi.");extra={};tab="hist";render()}catch(e){toast(e&&e.code==="permission-denied"?"Akun ini tidak punya izin menulis.":"Gagal menyimpan.")}}
-function vals(id){const o={};document.querySelectorAll(`input[data-t="${id}"]`).forEach(i=>o[i.dataset.k]=Math.max(0,Math.round((+i.value||0)*100)/100));return o}
-function serah(id){const t=rows.find(x=>x.id===id),v=vals(id),s=stok();
-for(const i of t.items){if(v[i.k]>s[i.k])return toast(`Stok ${bn(i.k)} tidak cukup (tersedia ${s[i.k]}).`)}
-upd(id,{status:"Diserahkan ke OK",tglSerah:Date.now(),items:t.items.map(i=>({...i,dis:v[i.k]}))},"Ditandai diserahkan ke OK.")}
+function vals(id){const o=[];document.querySelectorAll(`input[data-t="${id}"]`).forEach(i=>o[+i.dataset.n]=Math.max(0,Math.round((+i.value||0)*100)/100));return o}
+function serah(id){const t=rows.find(x=>x.id===id),v=vals(id),s=stok(),tot={};
+t.items.forEach((i,n)=>{tot[i.k]=(tot[i.k]||0)+(v[n]||0)});
+for(const k in tot){if(tot[k]>s[k])return toast(`Stok ${bn(k)} tidak cukup (tersedia ${s[k]}).`)}
+upd(id,{status:"Diserahkan ke OK",tglSerah:Date.now(),items:t.items.map((i,n)=>({...i,dis:v[n]||0}))},"Ditandai diserahkan ke OK.")}
 function tutup(id){const t=rows.find(x=>x.id===id),v=vals(id);
-for(const i of t.items){if(v[i.k]>i.dis)return toast(`Retur ${bn(i.k)} melebihi yang disiapkan.`)}
-const items=t.items.map(i=>({...i,ret:v[i.k],st:v[i.k]>0?"Menunggu Verifikasi":"Tidak Ada Retur"}));
+for(let n=0;n<t.items.length;n++){if((v[n]||0)>t.items[n].dis)return toast(`Retur ${bn(t.items[n].k)} melebihi yang disiapkan.`)}
+const items=t.items.map((i,n)=>{const r=v[n]||0;return{...i,ret:r,st:r>0?"Menunggu Verifikasi":"Tidak Ada Retur"}});
 upd(id,{items,status:items.some(i=>i.ret>0)?"Menunggu Verifikasi Retur":"Selesai"},"Input retur ditutup.")}
-function verif(id,k){const t=rows.find(x=>x.id===id);
-const items=t.items.map(i=>i.k===k?{...i,st:"Terverifikasi",tglVerif:Date.now()}:i);
+function verif(id,n){const t=rows.find(x=>x.id===id);
+const items=t.items.map((i,m)=>m===n?{...i,st:"Terverifikasi",tglVerif:Date.now()}:i);
 upd(id,{items,status:items.some(i=>i.st==="Menunggu Verifikasi")?t.status:"Selesai"},"Retur terverifikasi, stok kembali.")}
 function again(){if(pending&&!(document.activeElement&&/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName))){pending=false;render()}}
 document.addEventListener("focusout",()=>setTimeout(again,50));
